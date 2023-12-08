@@ -32,9 +32,17 @@ if (isset($_POST['apiResponse'])) {
     $compare = function ($a, $b) {
         //compare quantity first
         $compQty = $b['quantidade'] <=> $a['quantidade'];
-       
+
+        if ($compQty !== 0) {
+            return $compQty;
+        }    
+
         $payment = ['DIN', '30', 'R60', '90', '120'];
         $compCondition = array_search($a['condicao_pagamento'], $payment) <=> array_search($b['condicao_pagamento'], $payment);
+
+        if ($compCondition !== 0) {
+            return $compCondition;
+        }
 
         // make "PORT" with priority
         if ($a['pais'] === 'PORT' && $b['pais'] !== 'PORT') {
@@ -47,7 +55,6 @@ if (isset($_POST['apiResponse'])) {
     //sort with conditions
     usort($list, $compare);
 
-   
     foreach ($list as &$detail) {
         $detail['previsao_consumo'] = $detail['quantidade'] * 5;
     }
