@@ -1,0 +1,21 @@
+:root {
+    --main-color: #0092ac;
+    --white: #ffffff;
+}
+
+header {
+    width: 100%;
+    float: left;
+    background-color: var(--main-color);
+}
+
+.logotipo img {
+    max-height: 70px;
+    padding: 12px 0px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
